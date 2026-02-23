@@ -780,13 +780,17 @@
     }
 
     // Submit to Formspree (replace with actual endpoint after setup)
-    const endpoint = 'https://formspree.io/f/REPLACE_WITH_ENDPOINT';
-
-    fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, source: 'quantum-nova-landing', timestamp: new Date().toISOString() })
-    }).catch(() => {});  // Fail silently — UX shows success regardless
+    // Try Lux Life Rx API first (centralised lead capture), fall back to Formspree
+    const payload = JSON.stringify({ email, source: 'quantum-nova-landing', ts: new Date().toISOString() });
+    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+    const tryLLR = fetch('https://luxliferx.com/api/subscribe', { method: 'POST', headers, body: payload })
+                     .catch(() => null);
+    // Formspree fallback (wire at formspree.io if LLR not yet deployed)
+    tryLLR.then(r => {
+      if (!r || !r.ok) {
+        fetch('https://formspree.io/f/REPLACE_WITH_ENDPOINT', { method: 'POST', headers, body: payload }).catch(() => {});
+      }
+    }).catch(() => {});
 
     input.value = '';
     showToast();
