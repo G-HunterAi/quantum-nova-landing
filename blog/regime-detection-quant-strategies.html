@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regime Detection: The Missing Layer in Most Quant Strategies — Quantum Nova Research</title>
+  <meta name="description" content="The same signal that generates alpha in one regime destroys it in another. Regime detection is the layer most quantitative strategies skip." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #060912; --bg-card: #0d1220; --border: rgba(255,255,255,0.07); --gold: #c9a86a; --gold-l: #e8c97a; --teal: #4a8d9c; --text: #f0f4ff; --muted: #8892a4; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(6,9,18,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--gold); color: #060912; font-weight: 600; font-size: 0.85rem; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--gold-l); }
+    .article-wrapper { max-width: 760px; margin: 0 auto; padding: 120px 24px 80px; }
+    .article-meta { margin-bottom: 40px; }
+    .article-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-subtitle { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .article-byline { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+    .article-body { font-size: 1.05rem; line-height: 1.8; }
+    .article-body h1 { display: none; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-size: 1.15rem; font-weight: 600; color: var(--gold); margin: 32px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: rgba(240,244,255,0.88); }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body em { color: var(--gold-l); font-style: italic; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { margin-bottom: 8px; color: rgba(240,244,255,0.88); }
+    .article-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body code { font-family: 'JetBrains Mono', monospace; background: var(--bg-card); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .cta-block { margin: 60px 0; background: linear-gradient(135deg, rgba(201,168,106,0.12), rgba(74,141,156,0.08)); border: 1px solid rgba(201,168,106,0.25); border-radius: 16px; padding: 40px; text-align: center; }
+    .cta-block h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 12px; }
+    .cta-block p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #060912; font-weight: 700; font-size: 0.95rem; padding: 14px 32px; border-radius: 10px; text-decoration: none; }
+    .cta-btn:hover { background: var(--gold-l); }
+    .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); gap: 16px; flex-wrap: wrap; }
+    .nav-post { color: var(--muted); font-size: 0.9rem; text-decoration: none; max-width: 45%; transition: color 0.2s; }
+    .nav-post:hover { color: var(--gold); }
+    .nav-post.next { text-align: right; margin-left: auto; }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; margin-top: 80px; }
+    footer a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 640px) { nav { padding: 14px 20px; } .nav-links { display: none; } .article-wrapper { padding: 100px 20px 60px; } }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Quantum Nova</a>
+    <div class="nav-links"><a href="index.html">Research</a><a href="../index.html#waitlist" class="nav-cta">Join Waitlist</a></div>
+  </nav>
+  <div class="article-wrapper">
+    <div class="article-meta">
+      <div class="article-category">Quantitative Strategy</div>
+      <h1 class="article-title">Regime Detection: The Missing Layer in Most Quant Strategies</h1>
+      <p class="article-subtitle">The same signal that generates alpha in one regime destroys it in another. Regime detection is the layer most quantitative strategies skip.</p>
+      <div class="article-byline">Quantum Nova Research Team &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 7 min read</div>
+    </div>
+    <div class="article-body"><h1>Regime Detection: The Missing Layer in Most Quant Strategies</h1>
+<p>
+<strong>By the Quantum Nova Research Team · February 2026 · 7 min read</strong>
+</p>
+<hr>
+<p>
+Most quantitative strategies are built on the implicit assumption that markets behave consistently over time — that the signal which worked in the past will continue to work in the future under similar conditions. This assumption is violated regularly, not randomly. Markets move through distinct regimes, and the same signal that generates alpha in one regime destroys it in another.
+</p>
+<p>
+Regime detection — identifying which regime is current — is the layer most quant strategies skip. It's also where some of the most durable performance improvements are available.
+</p>
+<hr>
+<h2>What a Regime Is</h2>
+<p>
+A regime is a period during which the statistical properties of market returns are relatively stable and distinct from other periods. The most commonly referenced regime dimensions:
+</p>
+<p>
+<strong>Trend vs. mean-reversion</strong>: In trending regimes, momentum strategies work; mean-reversion strategies lose. In mean-reverting regimes, the opposite. These regimes coexist at different timeframes — markets can be mean-reverting at the hourly level and trending at the monthly level simultaneously.
+</p>
+<p>
+<strong>High vs. low volatility</strong>: Volatility regimes are relatively persistent and predictable. High-volatility regimes tend to persist for days to weeks. Low-volatility regimes can persist for months. The return distribution is fundamentally different in each — fat tails are more extreme, correlations are higher, and momentum signals tend to be less reliable in high-vol regimes.
+</p>
+<p>
+<strong>Risk-on vs. risk-off</strong>: The cross-asset correlation structure changes dramatically between these regimes. In risk-off episodes, correlations across asset classes converge toward 1.0. Diversification benefits disappear. High-beta assets move together regardless of their fundamental independence.
+</p>
+<p>
+<strong>Macro regime</strong>: Rising rates, falling rates, inflationary, deflationary, growth, recession. These regimes determine which asset classes have structural tailwinds and which face structural headwinds.
+</p>
+<hr>
+<h2>Why Regime Blindness Is Expensive</h2>
+<p>
+A momentum strategy backtested on 20 years of data includes multiple regime types — trending periods, mean-reverting periods, high-volatility crises, and low-volatility bull markets. The backtest average performance masks the regime-conditional performance, which is often the opposite of the average.
+</p>
+<p>
+A momentum strategy may show a Sharpe of 0.8 over 20 years while producing:
+</p>
+<ul><li>Sharpe of 1.4 during trending regimes</li><li>Sharpe of -0.3 during mean-reverting regimes</li><li>Sharpe of 0.2 during high-volatility regimes</li></ul>
+<p>
+Applying the full strategy without regime conditioning leaves significant alpha on the table and accepts unnecessary volatility from deploying the strategy in adverse conditions.
+</p>
+<p>
+The fix isn't to abandon momentum. It's to condition momentum exposure on regime: increase it when the regime is favorable, reduce it when it's not.
+</p>
+<hr>
+<h2>Regime Detection Methods</h2>
+<p>
+<strong>1. Volatility-based regime switching</strong>
+</p>
+<p>
+The simplest and most robust approach. Define high and low volatility regimes based on rolling realized volatility relative to its own historical distribution. Transitions between regimes are probabilistic — a volatility spike doesn't instantly classify the market as a high-vol regime; it increases the probability of being in one.
+</p>
+<p>
+Volatility-based regime switching is well-validated: high-vol regimes are robustly identifiable in real time, and conditioning strategies on them produces consistent improvement in Sharpe across multiple asset classes and historical periods.
+</p>
+<p>
+<strong>2. Hidden Markov Models (HMM)</strong>
+</p>
+<p>
+HMMs model the market as switching between hidden states (regimes) that produce observable outputs (returns, volatility). The model estimates both the state probabilities at any given time and the transition probabilities between states.
+</p>
+<p>
+HMM-based regime detection is more sophisticated than volatility thresholds and can capture multi-dimensional regime characteristics. Its weakness is sensitivity to calibration data — an HMM calibrated on one market era may classify regimes poorly in another.
+</p>
+<p>
+<strong>3. Trend filtering</strong>
+</p>
+<p>
+Kalman filters, exponential moving average crossovers, and other trend-identification methods can serve as regime classifiers. When the trend filter indicates a trending regime, momentum signals receive higher weight. When it indicates non-trending, mean-reversion signals receive higher weight.
+</p>
+<p>
+Trend filtering is robust across multiple implementations because the intuition is structural: momentum and mean-reversion are not just statistical regularities — they reflect different dominant market participant behaviors (trending regimes are driven by institutional accumulation; mean-reverting regimes are driven by liquidity provision and market-making).
+</p>
+<p>
+<strong>4. Macro regime classification</strong>
+</p>
+<p>
+For longer-horizon positioning, macro regime classification uses leading economic indicators, yield curve shape, and central bank policy signals to classify the macro environment. This operates on different timescales than the volatility or trend methods — macro regimes transition over months, not days.
+</p>
+<hr>
+<h2>The Multi-Regime Signal Architecture</h2>
+<p>
+The most robust approach combines regime detection across multiple dimensions and uses regime classification to weight signals rather than turn them on and off:
+</p>
+<p>
+1. <strong>Signal library</strong>: Develop signals across multiple strategy types (momentum, mean-reversion, carry, value) with documented regime-conditional performance for each
+ 
+2. <strong>Regime classifier</strong>: Maintain real-time estimates of the current regime across multiple dimensions (volatility, trend, macro)
+ 
+3. <strong>Dynamic weighting</strong>: Weight signals based on current regime classification, increasing weights on signals that perform well in the current regime and reducing weights on those that don't
+ 
+4. <strong>Uncertainty handling</strong>: When regime classification is uncertain (transition periods), reduce overall exposure rather than defaulting to a single regime assumption
+</p>
+<p>
+The result is not a strategy that always performs well. It's a strategy that performs better than its constituent parts because it's not deploying mean-reversion signals in trending regimes and vice versa.
+</p>
+<hr>
+<h2>The Transition Period Problem</h2>
+<p>
+The hardest part of regime detection is handling transitions — periods when the market is shifting from one regime to another. Transition periods combine the worst properties of both regimes and make any signal approach unreliable.
+</p>
+<p>
+The robust response to detected transitions: reduce overall position sizing. Don't guess which regime the market is moving toward. Let the new regime establish itself before re-deploying full signal weight. The cost of reduced exposure during transitions is small relative to the cost of being wrong about the direction of the transition.
+</p>
+<hr>
+<h2>Conclusion</h2>
+<p>
+Regime detection is not a sophisticated overlay — it's the foundation. A strategy that ignores regimes is implicitly assuming the current conditions will persist indefinitely, which they never do. The improvement from conditioning signals on regime is consistent, meaningful, and available with relatively simple methods that don't require complex calibration.
+</p>
+<p>
+The strategies that survive multiple market cycles almost always have explicit or implicit regime conditioning built into their risk management. It's not additional complexity. It's the structure that makes other complexity worth having.
+</p>
+<hr>
+<p>
+<em>Quantum Nova implements multi-dimensional regime detection as a core layer of its signal processing architecture. <a href="https://g-hunterai.github.io/quantum-nova-landing/" target="_blank">Join the waitlist</a>.</em>
+</p></div>
+    <div class="cta-block">
+      <h3>Built for Investors Who Demand Clarity</h3>
+      <p>Quantum Nova delivers institutional-grade signals across FX, Gold, and Crypto — with explicit probability distributions, not narrative forecasts.</p>
+      <a href="../index.html#waitlist" class="cta-btn">Join the Waitlist</a>
+    </div>
+    <div class="post-nav"><a href="crypto-vs-fx-risk-profiles.html" class="nav-post prev">← Crypto vs. FX</a><a href="drawdown-psychology-strategy-abandonment.html" class="nav-post next">Drawdown Psychology →</a></div>
+  </div>
+  <footer><p>© 2026 Quantum Nova. <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">Research</a></p></footer>
+</body>
+</html>

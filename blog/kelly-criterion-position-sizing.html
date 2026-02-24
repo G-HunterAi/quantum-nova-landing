@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Kelly Criterion and Why Most Investors Overbet — Quantum Nova Research</title>
+  <meta name="description" content="The mathematically optimal position sizing formula — and the four ways it's routinely misapplied in practice." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #060912; --bg-card: #0d1220; --border: rgba(255,255,255,0.07); --gold: #c9a86a; --gold-l: #e8c97a; --teal: #4a8d9c; --text: #f0f4ff; --muted: #8892a4; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(6,9,18,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--gold); color: #060912; font-weight: 600; font-size: 0.85rem; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--gold-l); }
+    .article-wrapper { max-width: 760px; margin: 0 auto; padding: 120px 24px 80px; }
+    .article-meta { margin-bottom: 40px; }
+    .article-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-subtitle { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .article-byline { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+    .article-body { font-size: 1.05rem; line-height: 1.8; }
+    .article-body h1 { display: none; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-size: 1.15rem; font-weight: 600; color: var(--gold); margin: 32px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: rgba(240,244,255,0.88); }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body em { color: var(--gold-l); font-style: italic; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { margin-bottom: 8px; color: rgba(240,244,255,0.88); }
+    .article-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body code { font-family: 'JetBrains Mono', monospace; background: var(--bg-card); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .cta-block { margin: 60px 0; background: linear-gradient(135deg, rgba(201,168,106,0.12), rgba(74,141,156,0.08)); border: 1px solid rgba(201,168,106,0.25); border-radius: 16px; padding: 40px; text-align: center; }
+    .cta-block h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 12px; }
+    .cta-block p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #060912; font-weight: 700; font-size: 0.95rem; padding: 14px 32px; border-radius: 10px; text-decoration: none; }
+    .cta-btn:hover { background: var(--gold-l); }
+    .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); gap: 16px; flex-wrap: wrap; }
+    .nav-post { color: var(--muted); font-size: 0.9rem; text-decoration: none; max-width: 45%; transition: color 0.2s; }
+    .nav-post:hover { color: var(--gold); }
+    .nav-post.next { text-align: right; margin-left: auto; }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; margin-top: 80px; }
+    footer a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 640px) { nav { padding: 14px 20px; } .nav-links { display: none; } .article-wrapper { padding: 100px 20px 60px; } }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Quantum Nova</a>
+    <div class="nav-links"><a href="index.html">Research</a><a href="../index.html#waitlist" class="nav-cta">Join Waitlist</a></div>
+  </nav>
+  <div class="article-wrapper">
+    <div class="article-meta">
+      <div class="article-category">Risk Management</div>
+      <h1 class="article-title">The Kelly Criterion and Why Most Investors Overbet</h1>
+      <p class="article-subtitle">The mathematically optimal position sizing formula — and the four ways it's routinely misapplied in practice.</p>
+      <div class="article-byline">Quantum Nova Research Team &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 6 min read</div>
+    </div>
+    <div class="article-body"><h1>The Kelly Criterion and Why Most Investors Overbet</h1>
+<p>
+<strong>By the Quantum Nova Research Team · February 2026 · 6 min read</strong>
+</p>
+<hr>
+<p>
+The Kelly Criterion is the mathematically optimal formula for position sizing in repeated bets with known probability and payoff. First published by John Kelly of Bell Labs in 1956, it was quickly adopted by professional gamblers and, eventually, by sophisticated investment managers. It is also routinely misapplied in ways that produce worse outcomes than simpler, more conservative alternatives.
+</p>
+<p>
+Understanding both what the criterion says and where it breaks down is essential for anyone managing a portfolio where position sizing is a real decision.
+</p>
+<hr>
+<h2>The Formula</h2>
+<p>
+Kelly's formula for a binary bet:
+</p>
+<p>
+<strong>f* = (bp - q) / b</strong>
+</p>
+<p>
+Where:
+</p>
+<ul><li><strong>f</strong>* = fraction of capital to bet</li><li><strong>b</strong> = net odds received (profit per unit bet)</li><li><strong>p</strong> = probability of winning</li><li><strong>q</strong> = probability of losing (1 - p)</li></ul>
+<p>
+For a bet that pays 2:1 with a 60% win probability: f* = (2 × 0.6 - 0.4) / 2 = 0.40. Bet 40% of your capital.
+</p>
+<p>
+For a continuous return distribution — more relevant to investment portfolios — the Kelly fraction is approximated as the Sharpe ratio divided by the standard deviation of returns, or equivalently as edge (expected return above risk-free rate) divided by variance.
+</p>
+<p>
+The core insight: Kelly maximizes the long-run expected <em>logarithm</em> of wealth. Not expected wealth itself — logarithm. This is crucial. Maximizing expected wealth would suggest going all-in on any positive expected value bet. Maximizing log wealth incorporates the geometric compounding effect that makes losing everything permanently catastrophic, regardless of expected value.
+</p>
+<hr>
+<h2>Why Kelly Produces Maximum Long-Run Growth</h2>
+<p>
+The logarithmic objective reflects a mathematical truth about compounding: gains and losses are not symmetric. A 50% loss requires a 100% gain to recover. A 33% loss requires a 50% gain. The arithmetic of sequences of multiplicative returns means that consistent overbetting — even with positive edge — produces geometric decay rather than growth.
+</p>
+<p>
+Kelly sizing is the unique bet fraction at which long-run growth is maximized. Below Kelly sizing, you're leaving compounding opportunity on the table. Above Kelly sizing — even slightly — the geometric mean of your returns declines. Far above Kelly: long-run ruin is mathematically guaranteed regardless of edge.
+</p>
+<p>
+This is not intuitive. A 60% win rate at 2:1 payoff looks like a license to bet aggressively. Kelly says: bet 40%. Anything above 40% on a sustained basis will eventually destroy the account despite the favorable distribution.
+</p>
+<hr>
+<h2>Why Professional Investors Use Fractional Kelly</h2>
+<p>
+The Kelly formula requires accurate probability estimates. This is where it breaks down in practice.
+</p>
+<p>
+Real-world probability estimation is unreliable. The 60% win probability isn't known — it's estimated from historical data, model outputs, and judgment. If the true probability is 55% rather than 60%, the "optimal" bet of 40% is actually an overbet that exceeds true Kelly. And since we systematically overestimate edge (due to overfitting, survivorship bias, and motivated reasoning), real Kelly fractions are almost always lower than estimated Kelly fractions.
+</p>
+<p>
+Professional investors using Kelly-based sizing almost universally run <em>fractional Kelly</em> — typically 25% to 50% of the calculated full Kelly fraction. The reduction does several things:
+</p>
+<ul><li>Substantially reduces drawdown magnitude (drawdown scales roughly with the square of the Kelly fraction)</li><li>Provides insurance against probability estimation error</li><li>Reduces variance without proportionally reducing long-run return</li></ul>
+<p>
+The practical argument: at half-Kelly, you capture approximately 75% of the long-run growth rate of full Kelly at approximately 50% of the volatility. The risk-adjusted improvement is significant.
+</p>
+<hr>
+<h2>The Four Failure Modes</h2>
+<p>
+<strong>1. Applying Kelly to non-stationary processes</strong>
+</p>
+<p>
+Kelly assumes the same bet, with the same probability distribution, repeated indefinitely. Market strategies are not stationary — the edge changes over time, often disappearing entirely as it becomes crowded. A Kelly fraction calculated on a strategy's historical distribution may be catastrophically wrong for the current distribution.
+</p>
+<p>
+<strong>2. Ignoring correlation across positions</strong>
+</p>
+<p>
+Multi-position portfolios require portfolio-level Kelly sizing that accounts for correlation. Two Kelly-sized positions that are 80% correlated require dramatically reduced individual sizing — the effective portfolio bet is much larger than the sum of individual positions when correlation is high.
+</p>
+<p>
+<strong>3. Using nominal Kelly on highly leveraged instruments</strong>
+</p>
+<p>
+Leverage amplifies both the bet fraction and estimation errors. A 2x leveraged position should be evaluated at its effective leverage-adjusted Kelly, not its nominal position size. Getting this wrong with leverage converts Kelly sizing into an extremely fast path to account destruction.
+</p>
+<p>
+<strong>4. Treating edge as constant during regime changes</strong>
+</p>
+<p>
+Market regimes change the probability distribution of returns. An edge that's real in trending markets may be negative in mean-reverting markets. Applying a fixed Kelly fraction derived from one regime to another regime is a form of model misspecification that Kelly mathematics does not protect against.
+</p>
+<hr>
+<h2>The Practical Implementation</h2>
+<p>
+For a systematic multi-asset portfolio:
+</p>
+<p>
+1. <strong>Estimate edge conservatively</strong>: Use a Sharpe ratio estimate that's been haircut by 30-50% from historical (accounting for overfitting and future underperformance)
+ 
+2. <strong>Calculate full Kelly</strong>: Use edge-to-variance ratio across the portfolio
+ 
+3. <strong>Apply 25-33% fractional Kelly</strong>: Reduces drawdown substantially at modest long-run growth cost
+ 
+4. <strong>Adjust for correlation</strong>: When positions are correlated, reduce individual sizes proportionally
+ 
+5. <strong>Re-estimate regularly</strong>: Kelly sizing is not static — it should be recalculated as the edge estimate updates
+</p>
+<p>
+The resulting position sizes will often feel too small. That's correct. The intuition that "this trade is obvious, we should be bigger" is exactly the sentiment that causes investors to overbet — and eventually experience a drawdown that ends the strategy.
+</p>
+<hr>
+<h2>Conclusion</h2>
+<p>
+Kelly criterion is one of the few mathematically rigorous frameworks for position sizing. Its power comes from its geometric perspective on compounding — the same perspective that makes fractional Kelly superior to full Kelly in practice, because estimation error is a larger problem than sub-optimal sizing.
+</p>
+<p>
+The investors who manage large positions through multiple market cycles almost invariably size conservatively relative to estimated Kelly. They're not being timid. They're being mathematically correct about what "optimal" means over a long enough horizon.
+</p>
+<hr>
+<p>
+<em>Quantum Nova's risk engine implements portfolio-level Kelly-adjusted position sizing with dynamic correlation adjustment. <a href="https://g-hunterai.github.io/quantum-nova-landing/" target="_blank">Join the waitlist</a>.</em>
+</p></div>
+    <div class="cta-block">
+      <h3>Built for Investors Who Demand Clarity</h3>
+      <p>Quantum Nova delivers institutional-grade signals across FX, Gold, and Crypto — with explicit probability distributions, not narrative forecasts.</p>
+      <a href="../index.html#waitlist" class="cta-btn">Join the Waitlist</a>
+    </div>
+    <div class="post-nav"><a href="why-forecasting-models-fail.html" class="nav-post prev">← Why Most Forecasting Models Fail</a><a href="crypto-vs-fx-risk-profiles.html" class="nav-post next">Crypto vs. FX: Risk Profiles →</a></div>
+  </div>
+  <footer><p>© 2026 Quantum Nova. <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">Research</a></p></footer>
+</body>
+</html>

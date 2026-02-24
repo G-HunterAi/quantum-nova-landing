@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawdown Psychology: Why Good Strategies Get Abandoned at the Worst Possible Moment — Quantum Nova Research</title>
+  <meta name="description" content="Strategies are most likely to be terminated at or near maximum drawdown — the exact moment when expected future returns are highest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #060912; --bg-card: #0d1220; --border: rgba(255,255,255,0.07); --gold: #c9a86a; --gold-l: #e8c97a; --teal: #4a8d9c; --text: #f0f4ff; --muted: #8892a4; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(6,9,18,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--gold); color: #060912; font-weight: 600; font-size: 0.85rem; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--gold-l); }
+    .article-wrapper { max-width: 760px; margin: 0 auto; padding: 120px 24px 80px; }
+    .article-meta { margin-bottom: 40px; }
+    .article-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-subtitle { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .article-byline { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+    .article-body { font-size: 1.05rem; line-height: 1.8; }
+    .article-body h1 { display: none; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-size: 1.15rem; font-weight: 600; color: var(--gold); margin: 32px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: rgba(240,244,255,0.88); }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body em { color: var(--gold-l); font-style: italic; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { margin-bottom: 8px; color: rgba(240,244,255,0.88); }
+    .article-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body code { font-family: 'JetBrains Mono', monospace; background: var(--bg-card); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .cta-block { margin: 60px 0; background: linear-gradient(135deg, rgba(201,168,106,0.12), rgba(74,141,156,0.08)); border: 1px solid rgba(201,168,106,0.25); border-radius: 16px; padding: 40px; text-align: center; }
+    .cta-block h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 12px; }
+    .cta-block p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #060912; font-weight: 700; font-size: 0.95rem; padding: 14px 32px; border-radius: 10px; text-decoration: none; }
+    .cta-btn:hover { background: var(--gold-l); }
+    .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); gap: 16px; flex-wrap: wrap; }
+    .nav-post { color: var(--muted); font-size: 0.9rem; text-decoration: none; max-width: 45%; transition: color 0.2s; }
+    .nav-post:hover { color: var(--gold); }
+    .nav-post.next { text-align: right; margin-left: auto; }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; margin-top: 80px; }
+    footer a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 640px) { nav { padding: 14px 20px; } .nav-links { display: none; } .article-wrapper { padding: 100px 20px 60px; } }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Quantum Nova</a>
+    <div class="nav-links"><a href="index.html">Research</a><a href="../index.html#waitlist" class="nav-cta">Join Waitlist</a></div>
+  </nav>
+  <div class="article-wrapper">
+    <div class="article-meta">
+      <div class="article-category">Decision Science</div>
+      <h1 class="article-title">Drawdown Psychology: Why Good Strategies Get Abandoned at the Worst Possible Moment</h1>
+      <p class="article-subtitle">Strategies are most likely to be terminated at or near maximum drawdown — the exact moment when expected future returns are highest.</p>
+      <div class="article-byline">Quantum Nova Research Team &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 6 min read</div>
+    </div>
+    <div class="article-body"><h1>Drawdown Psychology: Why Good Strategies Get Abandoned at the Worst Possible Moment</h1>
+<p>
+<strong>By the Quantum Nova Research Team · February 2026 · 6 min read</strong>
+</p>
+<hr>
+<p>
+A systematic trading strategy produces consistent results over a three-year period. Then it enters a drawdown — a period of underperformance lasting four months, with losses reaching 15% below the prior peak. The strategy's operators, having reviewed the logic and found nothing structurally wrong, terminate it at month four.
+</p>
+<p>
+In month five, the strategy recovers fully and goes on to produce its best annual return to date.
+</p>
+<p>
+This scenario plays out repeatedly across hedge funds, systematic trading desks, and individual investors. The termination of a sound strategy during a drawdown is not a failure of analysis. It's a failure of psychology under the specific conditions that drawdowns create.
+</p>
+<hr>
+<h2>Why Drawdowns Feel Different From What They Are</h2>
+<p>
+A drawdown of 15% from peak is a statistical event. It's the normal expression of variance in a strategy with known volatility. If the strategy has a Sharpe ratio of 1.0 and 12% annualized volatility, a 15% drawdown from peak has roughly a 40-50% probability of occurring in any given year.
+</p>
+<p>
+This is not a disaster. It is not a signal that the strategy is broken. It is the mathematical cost of participating in a strategy with that return and volatility profile.
+</p>
+<p>
+The problem is that this analytical framing is not what drawdowns feel like. They feel like:
+</p>
+<p>
+<strong>Validation of hidden doubts</strong>: Every concern that was suppressed during the profitable period resurfaces during a drawdown with new apparent validity. "I always wondered if the backtest was overfit." "The edge felt thin." "The market has changed." These thoughts existed before the drawdown — but were easy to dismiss when the strategy was profitable. The drawdown doesn't produce new information about the strategy's validity. It produces the conditions under which existing doubts can no longer be easily suppressed.
+</p>
+<p>
+<strong>Accelerating evidence</strong>: Each day of continued underperformance during a drawdown feels like additional evidence that the strategy is broken. In reality, a four-month drawdown in a strategy with monthly autocorrelation provides very little statistical information about whether the underlying edge has changed. But psychologically, time and accumulating losses feel like accumulating proof.
+</p>
+<p>
+<strong>Social and institutional pressure</strong>: For professional managers, drawdowns create external pressure that amplifies internal psychology. Clients ask questions. Committees request explanations. The pressure to explain the underperformance creates incentives to identify causes — which means identifying a narrative that justifies either defending or terminating the strategy. This pressure produces the worst possible decision-making environment.
+</p>
+<hr>
+<h2>The Termination Timing Problem</h2>
+<p>
+Strategies are most likely to be terminated at the worst possible moment — at or near the drawdown's maximum extent — for a specific reason: that's when the psychological pressure is highest.
+</p>
+<p>
+At the beginning of a drawdown, the response is typically "wait and see." After one month, the strategy is still within normal variance, and patience feels rational.
+</p>
+<p>
+After two months, concern develops. Reviews are conducted. The strategy's logic is re-examined. Usually nothing structurally wrong is found, but doubts accumulate.
+</p>
+<p>
+After three months, the probability that the underperformance is statistical noise rather than alpha decay starts being questioned more aggressively. External pressures escalate.
+</p>
+<p>
+After four months, the combination of accumulated losses, unresolved doubts, external pressure, and cognitive fatigue produces the decision to terminate.
+</p>
+<p>
+This termination decision is made at approximately maximum drawdown — the exact point at which expected future returns are highest, because mean-reversion from drawdown is exactly what a positive-expectation strategy produces. The termination captures all the downside and none of the recovery.
+</p>
+<hr>
+<h2>The Statistical Anchor</h2>
+<p>
+Before terminating any strategy, the key question is not "how large is this drawdown?" but "what is the probability that this drawdown is consistent with the strategy's known statistical properties?"
+</p>
+<p>
+For a strategy with documented annual volatility of 12% and monthly returns that are largely independent:
+</p>
+<ul><li>The probability of a 10% drawdown from peak in any given year: approximately 60%</li><li>The probability of a 15% drawdown: approximately 35%</li><li>The probability of a 20% drawdown: approximately 20%</li></ul>
+<p>
+None of these probabilities justify termination of a strategy with a positive expected value. They are the expected behavior of variance.
+</p>
+<p>
+What would justify termination:
+</p>
+<ul><li>Evidence that the market conditions driving the edge have structurally changed (new regulations, market structure shifts, alpha factor crowding)</li><li>Drawdown magnitude that exceeds the maximum historical drawdown by a factor of 1.5-2x with no identifiable external cause</li><li>A change in the strategy's behavior that is inconsistent with its theoretical basis</li></ul>
+<p>
+A four-month drawdown of 15% in a strategy designed for that volatility level is none of these things.
+</p>
+<hr>
+<h2>Structural Responses</h2>
+<p>
+Several structural approaches reduce the probability of psychologically-driven termination:
+</p>
+<p>
+<strong>Pre-defined drawdown limits with explicit review triggers</strong>: Rather than making termination decisions under emotional pressure, establish in advance the conditions that would trigger a review and the additional conditions that would trigger termination. Written, pre-committed, before the drawdown occurs.
+</p>
+<p>
+<strong>Separation of risk management from strategy evaluation</strong>: Risk management (position sizing, stop-losses) should be automatic and systematic. Strategy evaluation (is the edge still present?) should happen on a slower cycle — quarterly or annually — not in response to short-term performance.
+</p>
+<p>
+<strong>Drawdown context documentation</strong>: Maintain documentation of the strategy's historical drawdown behavior and the current drawdown's position relative to that history. Reviewing the historical context during a drawdown provides an anchor against the psychological tendency to experience the current drawdown as uniquely severe.
+</p>
+<p>
+<strong>Expectation-setting before deployment</strong>: Before deploying any strategy, explicitly model the worst expected drawdown scenario and document it. "This strategy will experience a drawdown of X% or more at least once every Y years." When the drawdown occurs, compare it to the pre-documented expectation rather than evaluating it in isolation.
+</p>
+<hr>
+<h2>Conclusion</h2>
+<p>
+Drawdown psychology is the reason that the performance of a strategy's investors is systematically worse than the performance of the strategy itself. The investor who buys at the peak and sells during the drawdown captures the worst outcomes and misses the recovery. This pattern repeats across investment vehicles, timeframes, and experience levels.
+</p>
+<p>
+The protection against it is structural rather than psychological. You cannot willpower your way through a drawdown with better decision-making. You can design systems that remove the decisions — or make the decisions in advance, before the emotional conditions that would compromise them.
+</p>
+<hr>
+<p>
+<em>Quantum Nova's risk governance framework includes pre-defined drawdown protocols and strategy evaluation criteria established outside of drawdown conditions. <a href="https://g-hunterai.github.io/quantum-nova-landing/" target="_blank">Join the waitlist</a>.</em>
+</p></div>
+    <div class="cta-block">
+      <h3>Built for Investors Who Demand Clarity</h3>
+      <p>Quantum Nova delivers institutional-grade signals across FX, Gold, and Crypto — with explicit probability distributions, not narrative forecasts.</p>
+      <a href="../index.html#waitlist" class="cta-btn">Join the Waitlist</a>
+    </div>
+    <div class="post-nav"><a href="regime-detection-quant-strategies.html" class="nav-post prev">← Regime Detection</a><a href="multi-asset-diversification-crisis-correlation.html" class="nav-post next">Crisis Diversification →</a></div>
+  </div>
+  <footer><p>© 2026 Quantum Nova. <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">Research</a></p></footer>
+</body>
+</html>

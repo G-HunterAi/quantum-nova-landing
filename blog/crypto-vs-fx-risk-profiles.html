@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto vs. FX: Risk Profiles, Correlations, and What Drives Each — Quantum Nova Research</title>
+  <meta name="description" content="Surface similarities mask fundamental structural differences. Applying FX intuitions to crypto — or vice versa — produces specific, predictable failure modes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #060912; --bg-card: #0d1220; --border: rgba(255,255,255,0.07); --gold: #c9a86a; --gold-l: #e8c97a; --teal: #4a8d9c; --text: #f0f4ff; --muted: #8892a4; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(6,9,18,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--gold); color: #060912; font-weight: 600; font-size: 0.85rem; padding: 9px 20px; border-radius: 8px; text-decoration: none; }
+    .nav-cta:hover { background: var(--gold-l); }
+    .article-wrapper { max-width: 760px; margin: 0 auto; padding: 120px 24px 80px; }
+    .article-meta { margin-bottom: 40px; }
+    .article-category { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-subtitle { font-size: 1.15rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .article-byline { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+    .article-body { font-size: 1.05rem; line-height: 1.8; }
+    .article-body h1 { display: none; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-size: 1.15rem; font-weight: 600; color: var(--gold); margin: 32px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: rgba(240,244,255,0.88); }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body em { color: var(--gold-l); font-style: italic; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { margin-bottom: 8px; color: rgba(240,244,255,0.88); }
+    .article-body a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body code { font-family: 'JetBrains Mono', monospace; background: var(--bg-card); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .cta-block { margin: 60px 0; background: linear-gradient(135deg, rgba(201,168,106,0.12), rgba(74,141,156,0.08)); border: 1px solid rgba(201,168,106,0.25); border-radius: 16px; padding: 40px; text-align: center; }
+    .cta-block h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 12px; }
+    .cta-block p { color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #060912; font-weight: 700; font-size: 0.95rem; padding: 14px 32px; border-radius: 10px; text-decoration: none; }
+    .cta-btn:hover { background: var(--gold-l); }
+    .post-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); gap: 16px; flex-wrap: wrap; }
+    .nav-post { color: var(--muted); font-size: 0.9rem; text-decoration: none; max-width: 45%; transition: color 0.2s; }
+    .nav-post:hover { color: var(--gold); }
+    .nav-post.next { text-align: right; margin-left: auto; }
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; margin-top: 80px; }
+    footer a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 640px) { nav { padding: 14px 20px; } .nav-links { display: none; } .article-wrapper { padding: 100px 20px 60px; } }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Quantum Nova</a>
+    <div class="nav-links"><a href="index.html">Research</a><a href="../index.html#waitlist" class="nav-cta">Join Waitlist</a></div>
+  </nav>
+  <div class="article-wrapper">
+    <div class="article-meta">
+      <div class="article-category">Market Structure</div>
+      <h1 class="article-title">Crypto vs. FX: Risk Profiles, Correlations, and What Drives Each</h1>
+      <p class="article-subtitle">Surface similarities mask fundamental structural differences. Applying FX intuitions to crypto — or vice versa — produces specific, predictable failure modes.</p>
+      <div class="article-byline">Quantum Nova Research Team &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 6 min read</div>
+    </div>
+    <div class="article-body"><h1>Crypto vs. FX: Risk Profiles, Correlations, and What Drives Each</h1>
+<p>
+<strong>By the Quantum Nova Research Team · February 2026 · 6 min read</strong>
+</p>
+<hr>
+<p>
+Traders who come to crypto from FX — or vice versa — consistently underestimate how different these markets are structurally. The surface similarities (leveraged trading, 24/7 markets, pairs and crosses) mask fundamental differences in what drives prices, how liquidity behaves, and what risk management approaches transfer between them.
+</p>
+<p>
+This isn't a stylistic observation. The differences produce specific failure modes for traders who apply FX intuitions to crypto or who assume crypto's volatility is simply FX at a different scale.
+</p>
+<hr>
+<h2>What Drives FX Prices</h2>
+<p>
+Foreign exchange is, at its core, a market in the relative prices of economic output. The forces that determine where EUR/USD trades on a given day are ultimately expressions of:
+</p>
+<p>
+<strong>Macroeconomic differentials</strong>: Relative growth rates, inflation differentials, productivity differences, and current account balances create long-run equilibrium pressures that anchor currencies over multi-year horizons. A country growing significantly faster than its trading partners will, over time, see capital inflows that support its currency.
+</p>
+<p>
+<strong>Interest rate differentials</strong>: In the short to medium term, interest rate differentials are the primary driver of currency movements. The carry trade — borrowing low-rate currencies to buy high-rate currencies — remains one of the most persistent return sources in FX despite frequent unwinds. Central bank policy expectation shifts move currencies rapidly and predictably.
+</p>
+<p>
+<strong>Risk appetite and safe haven flows</strong>: During risk-off episodes, capital flows toward safe haven currencies (USD, JPY, CHF) and away from high-beta currencies (emerging markets, commodity currencies). This produces strong cross-asset correlations during stress periods.
+</p>
+<p>
+<strong>Intervention and policy</strong>: Central banks actively intervene in FX markets. Japan's Ministry of Finance spent $60 billion defending the yen in 2022. Intervention creates hard floors, ceilings, and policy-driven non-linearity that systematic models must account for.
+</p>
+<p>
+<strong>Key characteristic</strong>: FX moves are bounded. Long-run purchasing power parity provides a gravitational force on currency valuations. A currency can be persistently mispriced but not infinitely mispriced. This creates mean-reverting tendencies over long horizons that don't exist in crypto.
+</p>
+<hr>
+<h2>What Drives Crypto Prices</h2>
+<p>
+Cryptocurrency prices are driven by fundamentally different forces:
+</p>
+<p>
+<strong>Narrative and adoption cycles</strong>: Crypto markets are primarily driven by evolving expectations about adoption — how many people, institutions, and applications will eventually use a given protocol. This is not an economic differential or interest rate calculation. It's a reflexive expectation about future use that is highly susceptible to narrative and momentum.
+</p>
+<p>
+<strong>Liquidity and market structure</strong>: Crypto markets have significantly lower liquidity depth than major FX pairs. A $50M market order in EUR/USD produces minimal impact. The same order in most crypto markets produces significant slippage. This creates non-linear price dynamics during institutional-scale moves.
+</p>
+<p>
+<strong>Regulatory and macro correlation</strong>: In the post-2020 period, Bitcoin and Ethereum have demonstrated increasing correlation with risk assets (particularly NASDAQ). During risk-off episodes, crypto typically sells off with equities — sometimes with amplified beta. This correlation is not structural or permanent, but it's been consistent enough to require incorporation in multi-asset risk models.
+</p>
+<p>
+<strong>Halving cycles and supply mechanics</strong>: Bitcoin's halving cycle — the roughly four-year reduction in mining supply — has historically produced recognizable boom-bust dynamics. The mechanism is real (supply shock) but the timing and magnitude are impossible to predict with precision.
+</p>
+<p>
+<strong>Key characteristic</strong>: Crypto markets have no anchor to fundamental value in the traditional sense. There's no earnings yield, no PPP equivalent, no interest rate differential. Valuation is narrative-contingent. This makes crypto markets capable of sustained moves that would be impossible in FX — 80% drawdowns and 10x cycles over years.
+</p>
+<hr>
+<h2>Correlation Structure and Portfolio Implications</h2>
+<p>
+The correlation between FX and crypto is low during normal conditions and variable during stress. This makes crypto a potential diversifier within certain regimes — but the regime matters enormously.
+</p>
+<p>
+<strong>The silo architecture rationale</strong>: A systematic multi-asset framework should treat FX and crypto as separate silos with independent risk budgets rather than as parts of a unified "currency" portfolio. The drivers are different enough that position sizing, signal generation, and risk management should be regime-conditioned independently.
+</p>
+<p>
+The specific risk rules that follow:
+</p>
+<ul><li>FX positions can be sized based on macro regime signals with reasonable confidence in the persistence of regime-correlated returns</li><li>Crypto positions require recognition of the fat-tailed, narrative-driven nature of returns — lower average sizing with wider scenario planning</li><li>Weekend crypto risk deserves explicit attention: FX markets close on weekends; crypto does not; institutional hedges can't be placed; gap risk is asymmetric</li></ul>
+<p>
+<strong>Correlation during stress</strong>: The 2022 period demonstrated that crypto's correlation with risk assets spikes during liquidity crises. A portfolio long crypto and long high-beta FX pairs during a risk-off event faces compounding drawdown. Stress-period correlation assumptions must be built into any cross-asset risk model.
+</p>
+<hr>
+<h2>What Transfers Between Markets</h2>
+<p>
+<strong>What works in both:</strong>
+</p>
+<ul><li>Momentum over medium-term horizons (weeks to months)</li><li>Liquidity-based position sizing</li><li>Volatility regime conditioning</li><li>Risk management priority over alpha generation</li></ul>
+<p>
+<strong>What doesn't transfer from FX to crypto:</strong>
+</p>
+<ul><li>Carry trade logic (crypto staking yields are not analogous to interest rate differentials)</li><li>Mean-reversion expectations over long horizons</li><li>Central bank intervention anticipation</li><li>PPP-based valuation anchoring</li></ul>
+<p>
+<strong>What doesn't transfer from crypto to FX:</strong>
+</p>
+<ul><li>Narrative-momentum position sizing (appropriate for crypto, inappropriate for FX)</li><li>Fat-tail distribution assumptions (FX distributions are fat-tailed but significantly less so)</li><li>Cycle timing based on supply events</li></ul>
+<hr>
+<h2>Conclusion</h2>
+<p>
+Crypto and FX are both traded as currency pairs with leverage. That's where the similarity ends. The drivers, distributions, and risk characteristics are different enough that a disciplined multi-asset framework treats them as separate asset classes — sharing infrastructure but not risk logic.
+</p>
+<p>
+The traders who perform well across both markets are not those who apply unified intuitions. They're the ones who model each market on its own terms.
+</p>
+<hr>
+<p>
+<em>Quantum Nova maintains separate Terminal A (FX/Gold) and Terminal B (Crypto) risk silos with independent position limits and signal generation. <a href="https://g-hunterai.github.io/quantum-nova-landing/" target="_blank">Join the waitlist</a>.</em>
+</p></div>
+    <div class="cta-block">
+      <h3>Built for Investors Who Demand Clarity</h3>
+      <p>Quantum Nova delivers institutional-grade signals across FX, Gold, and Crypto — with explicit probability distributions, not narrative forecasts.</p>
+      <a href="../index.html#waitlist" class="cta-btn">Join the Waitlist</a>
+    </div>
+    <div class="post-nav"><a href="kelly-criterion-position-sizing.html" class="nav-post prev">← The Kelly Criterion</a><a href="regime-detection-quant-strategies.html" class="nav-post next">Regime Detection →</a></div>
+  </div>
+  <footer><p>© 2026 Quantum Nova. <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">Research</a></p></footer>
+</body>
+</html>
